@@ -5,10 +5,10 @@ DOCKERREPO = sarcasticadmin
 IMAGENAME ?= openwrt-build
 DOCKERBUILD = $(DOCKERCMD) build
 
-VERSION := $(shell git rev-parse --short HEAD)
+DOCKERVERSION ?= $(shell git rev-parse --short HEAD)
 
 docker-build:
-	$(DOCKERBUILD) -t "$(DOCKERREPO)/$(IMAGENAME):$(VERSION)" .
+	$(DOCKERBUILD) -t "$(DOCKERREPO)/$(IMAGENAME):$(DOCKERVERSION)" .
 
 docker-push: build
-	$(DOCKERCMD) push "$(DOCKERREPO)/$(IMAGENAME):$(VERSION)"
+	$(DOCKERCMD) push "$(DOCKERREPO)/$(IMAGENAME):$(DOCKERVERSION)"
