@@ -27,6 +27,7 @@ do
       TARGET=$OPTARG
       ;;
     h )
+      echo $0
       usage
       exit 0
       ;;
@@ -50,6 +51,7 @@ gen_templates(){
 }
 
 if [ "${UPDATE}" == "1" ]; then
+  rm -rf "golden/${TARGET}"
   gen_templates "golden/${TARGET}"
 fi
 
