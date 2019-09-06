@@ -30,7 +30,7 @@ jobs:
   # outside of initial PR CI testing
   openwrt_build:
     docker:
-    - image: sarcasticadmin/openwrt-build
+    - image: sarcasticadmin/openwrt-build@sha256:e744706323d34bd51f8abc0a9d0413c4a53817c09b6ab50666acafe66eaefb38
       resource_class: medium
       working_directory: ~/scale-network/openwrt
       steps:
@@ -124,10 +124,11 @@ workflows:
     - gomplate_tests
     - ansible_lint
     - perl_lint
-  nightly:
+  weekly:
      triggers:
        - schedule:
-           cron: "0 */6 * * *"
+           # 03:15 every sunday
+           cron: "15 3 * * 0"
            filters:
              branches:
                only:
